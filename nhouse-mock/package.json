@@ -24,6 +24,7 @@
     "web3": "^1.6.0"
   },
   "devDependencies": {
+    "@types/react": "18.2.14",
     "typescript": "^5.1.3"
   }
 }
