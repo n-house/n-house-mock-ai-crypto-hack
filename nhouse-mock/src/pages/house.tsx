@@ -27,25 +27,35 @@ import { usePrivy } from "@privy-io/react-auth"
 import { useRouter } from "next/router"
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchMetadata`,
-  )
-  console.log(res.data)
-  if (!res.data) {
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchMetadata`,
+    )
+    console.log(res.data)
+    if (!res.data) {
+      return {
+        props: {
+          availableTickets: [],
+        },
+      }
+    }
     return {
       props: {
-        availableTickets: [],
+        availableTickets: res.data.sort((a: any, b: any) => {
+          const da = new Date(a.tokenUri.reservedDate)
+          const db = new Date(b.tokenUri.reservedDate)
+          return da.getTime() - db.getTime()
+        }),
       },
     }
-  }
-  return {
-    props: {
-      availableTickets: res.data.sort((a: any, b: any) => {
-        const da = new Date(a.tokenUri.reservedDate)
-        const db = new Date(b.tokenUri.reservedDate)
-        return da.getTime() - db.getTime()
-      }),
-    },
+  } catch (error) {
+    console.log(error)
+    return {
+      redirect: {
+        destination: `/home?error=${error}`,
+        permanent: false,
+      },
+    }
   }
 }
 
