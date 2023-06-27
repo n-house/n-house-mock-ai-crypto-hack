@@ -3,7 +3,6 @@ import Web3 from "web3"
 import contract from "./abis/NhouseMembership.json"
 
 const API_URL = process.env.API_URL || "https://evm.astar.network"
-const PUBLIC_KEY = process.env.PUBLIC_KEY || "0x872449c44937f6Ac266cbBCDCb189B25AcEBb9E9"
 const CONTRACT_ADDRESS = process.env.MEMBERSHIP_ADDRESS || "0x7B4a600b78fC6534B4125145cd38e45d366ebD28"
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
