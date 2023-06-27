@@ -1,17 +1,32 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import Web3 from "web3"
+import contract from "./abis/NhouseNFT.json"
+const API_URL = process.env.API_URL || "https://evm.astar.network"
+const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS || "0xBE0505c227A3f786319f820510F9C09BB79EAb74"
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    context.log('HTTP trigger function processed a request.');
-    const name = (req.query.name || (req.body && req.body.name));
-    const responseMessage = name
-        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
-
+  const web3 = new Web3(API_URL)
+  const nftContract = new web3.eth.Contract((contract as any).abi, CONTRACT_ADDRESS)
+  await nftContract.methods.getAllTokens().call((err: any, tokenUris: any) => {
+    if (err) {
+      console.log("An error occured", err)
+      context.res = {
+        status: 500,
+      }
+      return
+    }
+    const formattedUris = tokenUris.map((tokenUri: any) => {
+      return {
+        tokenId: tokenUri[0],
+        tokenUri: JSON.parse(tokenUri[1]),
+      }
+    })
+    console.log(formattedUris)
     context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: responseMessage
-    };
+      status: 200,
+      body: formattedUris,
+    }
+  })
+}
 
-};
-
-export default httpTrigger;
+export default httpTrigger
