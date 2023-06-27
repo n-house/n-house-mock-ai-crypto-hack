@@ -91,11 +91,14 @@ const House: NextPage<Props> = ({ availableTickets }) => {
       isClosable: true,
     })
     try {
-      const res = await axios.post("/api/handleReserve", {
-        // @ts-ignore
-        tokenId: selectedTicket.tokenId,
-        address: user?.wallet?.address,
-      })
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071"}/api/handleReserve`,
+        {
+          // @ts-ignore
+          tokenId: selectedTicket.tokenId,
+          address: user?.wallet?.address,
+        },
+      )
 
       if (res.data) {
         console.log(res.data)
