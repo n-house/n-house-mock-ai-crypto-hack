@@ -25,7 +25,7 @@ const handleTransfer = async (web3: any, address: string, tokenId: string, conte
       }
       return
     }
-    console.log("SIGNING", signedTx)
+    context.log("SIGNING", signedTx)
     await web3.eth.sendSignedTransaction(signedTx.rawTransaction as string, (err: any, resp: any) => {
       if (err) {
         context.res = {
@@ -34,7 +34,7 @@ const handleTransfer = async (web3: any, address: string, tokenId: string, conte
         }
         return
       }
-      console.log("RESERVING", resp)
+      context.log("RESERVING", resp)
     })
   })
   return { status: 200, hash: resp.transactionHash }
@@ -44,14 +44,14 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   const { address, tokenId } = req.body
   const web3 = new Web3(API_URL)
   const resp = await handleTransfer(web3, address, tokenId, context)
-  console.log(resp)
+  context.log(resp)
 
   if (resp.hash) {
     const interval = setInterval(function () {
-      console.log("Attempting to get transaction receipt...")
+      context.log("Attempting to get transaction receipt...")
       web3.eth.getTransactionReceipt(resp.hash, function (err, rec) {
         if (rec) {
-          console.log(rec)
+          context.log(rec)
           clearInterval(interval)
           context.res = {
             status: 200,
@@ -59,7 +59,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
           }
         }
         if (err) {
-          console.log(err)
+          context.log(err)
           clearInterval(interval)
           context.res = {
             status: 200,
