@@ -26,19 +26,15 @@ const handleMint = async (web3: any, address: string, tokenUri: any, context: Co
       return
     }
     context.log("SIGNING", signedTx)
-    const tx = await web3.eth.sendSignedTransaction(
-      signedTx.rawTransaction as string,
-      async (err: any, resp: any) => {
-        await tx.wait()
-        if (err) {
-          context.res = {
-            status: 500,
-          }
-          return
+    await web3.eth.sendSignedTransaction(signedTx.rawTransaction as string, (err: any, resp: any) => {
+      if (err) {
+        context.res = {
+          status: 500,
         }
-        context.log("RESERVING", resp)
-      },
-    )
+        return
+      }
+      context.log("RESERVING", resp)
+    })
   })
   return { status: 200, hash: resp.transactionHash }
 }

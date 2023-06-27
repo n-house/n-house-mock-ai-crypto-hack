@@ -37,7 +37,7 @@ const handleTransfer = async (web3: any, address: string, tokenId: string, conte
       context.log("RESERVING", resp)
     })
   })
-  return { status: 200, hash: resp.transactionHash }
+  return resp.transactionHash
 }
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
@@ -46,7 +46,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   const resp = await handleTransfer(web3, address, tokenId, context)
   context.log(resp)
 
-  if (resp.hash) {
+  if (resp) {
     const interval = setInterval(function () {
       context.log("Attempting to get transaction receipt...")
       web3.eth.getTransactionReceipt(resp.hash, function (err, rec) {
@@ -62,8 +62,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
           context.log(err)
           clearInterval(interval)
           context.res = {
-            status: 200,
-            body: rec,
+            status: 500,
           }
         }
       })
