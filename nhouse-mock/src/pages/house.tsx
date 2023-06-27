@@ -28,7 +28,7 @@ import { useRouter } from "next/router"
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_PATH || "http://localhost:3000"}/api/fetchMetadata`,
+    `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071"}/api/fetchMetadata`,
   )
   console.log(res.data)
   if (!res.data) {
