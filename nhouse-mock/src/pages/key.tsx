@@ -17,7 +17,7 @@ const Key: NextPage = () => {
   const fetchKeys = async () => {
     if (!user?.wallet?.address) return
     const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071"}/api/fetchKeys`,
+      `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchKeys`,
       { address: user?.wallet?.address },
     )
     if (!res.data) return

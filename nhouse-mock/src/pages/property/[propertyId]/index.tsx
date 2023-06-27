@@ -41,9 +41,12 @@ const PropertyPage: NextPage = () => {
         duration: 9000,
         isClosable: true,
       })
-      const res = await axios.post("/api/mintOwnership", {
-        address: user?.wallet?.address,
-      })
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/mintOwnership`,
+        {
+          address: user?.wallet?.address,
+        },
+      )
       console.log(res)
       if (res.data) {
         toast({

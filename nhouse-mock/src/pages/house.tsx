@@ -28,7 +28,7 @@ import { useRouter } from "next/router"
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071"}/api/fetchMetadata`,
+    `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchMetadata`,
   )
   console.log(res.data)
   if (!res.data) {
@@ -92,7 +92,7 @@ const House: NextPage<Props> = ({ availableTickets }) => {
     })
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071"}/api/handleReserve`,
+        `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/handleReserve`,
         {
           // @ts-ignore
           tokenId: selectedTicket.tokenId,
