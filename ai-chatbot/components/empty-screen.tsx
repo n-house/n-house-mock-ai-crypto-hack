@@ -39,7 +39,7 @@ export function EmptyScreen({
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="bg-background rounded-lg border p-8">
-        <h1 className="mb-2 text-lg font-semibold">
+        <h1 className="text-muted-foreground mb-2 text-lg font-semibold">
           Welcome to the AI Chatbot!
         </h1>
         <p className="text-muted-foreground mb-2 leading-normal">
@@ -63,7 +63,9 @@ export function EmptyScreen({
             </Button>
           ))}
         </div>
-        <Text mt="20px !important">などなど、ぜひお試しください。</Text>
+        <p className="text-muted-foreground mt-2 leading-normal">
+          などなど、ぜひお試しください。
+        </p>
       </div>
     </div>
   )
