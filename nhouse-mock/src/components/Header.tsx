@@ -40,7 +40,7 @@ const Header: React.FC = () => {
         bg="white"
         justifyContent="space-between"
       >
-        <Link href="/home" w="24px" ml="16px" textDecoration="none !important">
+        <Link href="/manage" w="24px" ml="16px" textDecoration="none !important">
           <Image w="24px" my="20px" src="/icons/Setting.png" />
         </Link>
         <Link href="/home" textDecoration="none !important">
