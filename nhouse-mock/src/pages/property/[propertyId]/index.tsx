@@ -41,7 +41,7 @@ const PropertyPage: NextPage = () => {
         duration: 9000,
         isClosable: true,
       })
-      const res = await axios.post("/api/membership/mint", {
+      const res = await axios.post("/api/mintOwnership", {
         address: user?.wallet?.address,
       })
       console.log(res)

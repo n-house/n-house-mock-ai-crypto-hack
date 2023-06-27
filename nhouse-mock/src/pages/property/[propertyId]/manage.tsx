@@ -103,7 +103,7 @@ const Manage: NextPage<Props> = ({ issuedTickets }) => {
 
   const checkNft = async () => {
     try {
-      const result = await axios.post("/api/membership/checkNFT", {
+      const result = await axios.post("/api/checkOwnership", {
         address: user?.wallet?.address,
       })
       console.log(result.data)
