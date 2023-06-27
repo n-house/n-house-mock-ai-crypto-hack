@@ -1,11 +1,10 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import Web3 from "web3"
 import contract from "./abis/NhouseNFT.json"
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://evm.astar.network"
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY || "0x872449c44937f6Ac266cbBCDCb189B25AcEBb9E9"
-const PRIVATE_KEY = process.env.NEXT_PUBLIC_PRIVATE_KEY || ""
-const CONTRACT_ADDRESS =
-  process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "0xBE0505c227A3f786319f820510F9C09BB79EAb74"
+const API_URL = process.env.API_URL || "https://evm.astar.network"
+const PUBLIC_KEY = process.env.PUBLIC_KEY || "0x872449c44937f6Ac266cbBCDCb189B25AcEBb9E9"
+const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
+const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS || "0xBE0505c227A3f786319f820510F9C09BB79EAb74"
 
 const handleTransfer = async (web3: any, address: string, tokenId: string, context: Context) => {
   const nftContract = new web3.eth.Contract((contract as any).abi, CONTRACT_ADDRESS)
@@ -48,9 +47,9 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   console.log(resp)
 
   if (resp.hash) {
-    const interval = setInterval(function () {
+    const interval = setInterval(async function () {
       console.log("Attempting to get transaction receipt...")
-      web3.eth.getTransactionReceipt(resp.hash, function (err, rec) {
+      web3.eth.getTransactionReceipt(resp.hash, async function (err, rec) {
         if (rec) {
           console.log(rec)
           clearInterval(interval)
