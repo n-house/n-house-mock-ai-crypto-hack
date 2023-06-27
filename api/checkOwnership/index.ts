@@ -1,6 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import Web3 from "web3"
-import contract from "@/contracts/NhouseNFT.json"
+import contract from "./abis/NhouseMembership.json"
 
 const API_URL = process.env.API_URL || "https://evm.astar.network"
 const PUBLIC_KEY = process.env.PUBLIC_KEY || "0x872449c44937f6Ac266cbBCDCb189B25AcEBb9E9"
