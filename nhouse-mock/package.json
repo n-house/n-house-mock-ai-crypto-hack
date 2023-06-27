@@ -12,7 +12,7 @@
     "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@privy-io/react-auth": "^1.27.0",
+    "@privy-io/react-auth": "^1.28.1",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.12.16",
