@@ -6,7 +6,7 @@ const PUBLIC_KEY = process.env.PUBLIC_KEY || "0x872449c44937f6Ac266cbBCDCb189B25
 const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS || "0xBE0505c227A3f786319f820510F9C09BB79EAb74"
 
-const handleTransfer = async (web3: any, address: string, tokenId: string, context: Context) => {
+const handleTransfer = async (web3: any, address: string, tokenId: string) => {
   const nftContract = new web3.eth.Contract((contract as any).abi, CONTRACT_ADDRESS)
   const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest")
   const data = await nftContract.methods.transferFrom(PUBLIC_KEY, address, JSON.parse(tokenId)).encodeABI()
@@ -19,22 +19,20 @@ const handleTransfer = async (web3: any, address: string, tokenId: string, conte
   }
   const resp = await web3.eth.accounts.signTransaction(tx, PRIVATE_KEY, async (err: any, signedTx: any) => {
     if (err) {
-      context.res = {
-        status: 500,
-        message: err,
-      }
+      console.log("ERROR", err)
       return
     }
-    context.log("SIGNING", signedTx)
+    console.log("SIGNING", signedTx)
     await web3.eth.sendSignedTransaction(signedTx.rawTransaction as string, (err: any, resp: any) => {
       if (err) {
-        context.res = {
-          status: 500,
-          message: err,
-        }
+        // context.res = {
+        //   status: 500,
+        //   message: err,
+        // }
+        console.log("ERROR", err)
         return
       }
-      context.log("RESERVING", resp)
+      console.log("RESERVING", resp)
     })
   })
   return resp.transactionHash
@@ -43,15 +41,15 @@ const handleTransfer = async (web3: any, address: string, tokenId: string, conte
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   const { address, tokenId } = req.body
   const web3 = new Web3(API_URL)
-  const resp = await handleTransfer(web3, address, tokenId, context)
-  context.log(resp)
+  const resp = await handleTransfer(web3, address, tokenId)
+  console.log(resp)
 
   if (resp) {
     const interval = setInterval(function () {
-      context.log("Attempting to get transaction receipt...")
-      web3.eth.getTransactionReceipt(resp.hash, function (err, rec) {
+      console.log("Attempting to get transaction receipt...")
+      web3.eth.getTransactionReceipt(resp, function (err, rec) {
         if (rec) {
-          context.log(rec)
+          console.log(rec, "Transaction receipt received")
           clearInterval(interval)
           context.res = {
             status: 200,
@@ -59,7 +57,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
           }
         }
         if (err) {
-          context.log(err)
+          console.log(err, "Error getting transaction receipt")
           clearInterval(interval)
           context.res = {
             status: 500,
@@ -67,6 +65,11 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         }
       })
     }, 1000)
+  } else {
+    console.log("Error getting transaction hash")
+    context.res = {
+      status: 500,
+    }
   }
 }
 
