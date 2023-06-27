@@ -29,6 +29,9 @@ import { useRouter } from "next/router"
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const res = await axios.get(`https://stapp-nhouse-mock2-e9f9g5fra6gnbzc6.z01.azurefd.net/api/fetchMetadata`)
+    // const res = await axios.get(
+    //   `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchMetadata`,
+    // )
     console.log(res.data)
     if (!res.data) {
       return {

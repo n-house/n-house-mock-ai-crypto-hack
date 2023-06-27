@@ -23,7 +23,8 @@ import axios from "axios"
 import { usePrivy } from "@privy-io/react-auth"
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchAll`)
+  const res = await axios.get(`https://stapp-nhouse-mock2-e9f9g5fra6gnbzc6.z01.azurefd.net/api/fetchAll`)
+  // const res = await axios.get(`${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchAll`)
   console.log(res.data)
   if (!res.data) {
     return {
