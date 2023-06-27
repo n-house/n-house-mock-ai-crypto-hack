@@ -39,7 +39,7 @@ const PropertyReservationCard: React.FC<Props> = ({ property, onOpen, isLoading,
         <Text>N’HOUSE</Text>
         <Text mt="-18px">{property.title}</Text>
       </Box>
-      {property.id === "1" && ticket && (
+      {property.id === "1" && ticket && isLoading && (
         <>
           <Box
             fontFamily="Oswald"

@@ -134,6 +134,9 @@ const House: NextPage<Props> = ({ availableTickets }) => {
           duration: 9000,
           isClosable: true,
         })
+        setTimeout(() => {
+          router.push("/house")
+        }, 3000)
       }
     } catch (error) {
       setIsLoading(false)
@@ -144,6 +147,9 @@ const House: NextPage<Props> = ({ availableTickets }) => {
         duration: 9000,
         isClosable: true,
       })
+      setTimeout(() => {
+        router.push("/house")
+      }, 3000)
     }
   }
 
