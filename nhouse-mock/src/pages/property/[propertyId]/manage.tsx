@@ -23,7 +23,7 @@ import axios from "axios"
 import { usePrivy } from "@privy-io/react-auth"
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-  const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_PATH || "http://localhost:3000"}/api/fetchAll`)
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchAll`)
   console.log(res.data)
   if (!res.data) {
     return {
@@ -85,9 +85,12 @@ const Manage: NextPage<Props> = ({ issuedTickets }) => {
       duration: 2000,
       isClosable: true,
     })
-    const res = await axios.post("/api/batchMint", {
-      dates: selectedDates,
-    })
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/batchMint`,
+      {
+        dates: selectedDates,
+      },
+    )
     if (res.status === 200) {
       setSelectedDates([])
       setIsLoading(false)
@@ -103,9 +106,12 @@ const Manage: NextPage<Props> = ({ issuedTickets }) => {
 
   const checkNft = async () => {
     try {
-      const result = await axios.post("/api/checkOwnership", {
-        address: user?.wallet?.address,
-      })
+      const result = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/checkOwnership`,
+        {
+          address: user?.wallet?.address,
+        },
+      )
       console.log(result.data)
       if (!result.data) {
         toast({
