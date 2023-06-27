@@ -47,9 +47,9 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   console.log(resp)
 
   if (resp.hash) {
-    const interval = setInterval(async function () {
+    const interval = setInterval(function () {
       console.log("Attempting to get transaction receipt...")
-      await web3.eth.getTransactionReceipt(resp.hash, async function (err, rec) {
+      web3.eth.getTransactionReceipt(resp.hash, function (err, rec) {
         if (rec) {
           console.log(rec)
           clearInterval(interval)
