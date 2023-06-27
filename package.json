@@ -1,0 +1,29 @@
+{
+  "name": "n-house-mock-monorepo",
+  "version": "1.0.0",
+  "description": "About",
+  "main": "index.js",
+  "scripts": {
+    "start-api": "cd api && npm start",
+    "start-app": "cd nhouse-mock && npm run dev",
+    "start-dev": "concurrently \"npm:start-api\" \"npm:start-app\" ",
+    "start-swa": "swa start http://localhost:3000 --api-location ./api",
+    "start": "npm run start-dev && npm run start-swa"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n-house/n-house-mock-ai-crypto-hack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n-house/n-house-mock-ai-crypto-hack/issues"
+  },
+  "homepage": "https://github.com/n-house/n-house-mock-ai-crypto-hack#readme",
+  "devDependencies": {
+    "@azure/static-web-apps-cli": "^1.1.1",
+    "azure-functions-core-tools": "^4.0.5030",
+    "concurrently": "^7.6.0"
+  }
+}
