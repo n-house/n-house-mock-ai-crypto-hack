@@ -64,6 +64,7 @@ const Key: NextPage = () => {
         </HStack>
         <Center w="100%" maxW="440px" pb="98px">
           <Button
+            maxW="368px"
             position="absolute"
             bottom="100px"
             color="white"
