@@ -89,6 +89,17 @@ nhouseは、別荘をオンラインで販売するだけでなく、
 
 ・nhouse-contractディレクトリ内で `npm i --legacy-peer-deps`
 
-・次のコマンドでデプロイする。また、ログにコントラクトアドレスが表示されます。`npx haedhat run --network astar scripts/deploy.js` *NhouseNFTの場合
+・次のコマンドでデプロイする。また、ログにコントラクトアドレスが表示されます。`npx hardhat run --network astar scripts/deploy.js` *NhouseNFTの場合
 
-・コピーしたコントラクトアドレスを`scripts/mint-nft.js`にセットし、`npx haedhat run --network astar scripts/mint-nft.js`でNFTをミントすることができる。
+・コピーしたコントラクトアドレスを`scripts/mint-nft.js`にセットし、`npx hardhat run --network astar scripts/mint-nft.js`でNFTをミントすることができる。
+
+
+【コントラクト情報など】
+
+・NhouseNFT: 0xBE0505c227A3f786319f820510F9C09BB79EAb74
+
+https://blockscout.com/astar/address/0xBE0505c227A3f786319f820510F9C09BB79EAb74
+
+・N on the beach: 0x5B0CFea8D2b67ECb8320D3FED6DAB87D63b174C5
+
+https://blockscout.com/astar/address/0x5B0CFea8D2b67ECb8320D3FED6DAB87D63b174C5
