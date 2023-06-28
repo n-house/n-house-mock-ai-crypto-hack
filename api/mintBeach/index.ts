@@ -3,7 +3,7 @@ import abi from "./abis/NOnTheBeachNFT.json"
 const API_URL = process.env.API_URL || "https://evm.astar.network"
 const PUBLIC_KEY = process.env.PUBLIC_KEY || "0x872449c44937f6Ac266cbBCDCb189B25AcEBb9E9"
 const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
-const CONTRACT_ADDRESS = process.env.MEMBERSHIP_ADDRESS || "0x7B4a600b78fC6534B4125145cd38e45d366ebD28"
+const CONTRACT_ADDRESS = process.env.NONTHEBEACH_ADDRESS || "0x5B0CFea8D2b67ECb8320D3FED6DAB87D63b174C5"
 import { ethers } from "ethers"
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {

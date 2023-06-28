@@ -7,7 +7,8 @@
     "PUBLIC_KEY": "",
     "PRIVATE_KEY": "",
     "CONTRACT_ADDRESS": "",
-    "MEMBERSHIP_ADDRESS": ""
+    "MEMBERSHIP_ADDRESS": "",
+    "NONTHEBEACH_ADDRESS": ""
   },
   "Host": {
     "CORS": "*"
