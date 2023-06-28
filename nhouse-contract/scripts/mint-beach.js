@@ -11,9 +11,10 @@ const contractAddress = "0x5B0CFea8D2b67ECb8320D3FED6DAB87D63b174C5"
 const nftContract = new web3.eth.Contract(contract.abi, contractAddress)
 
 const metadata = JSON.stringify({
-  name: "Nhouse NFT",
-  description: "An NFT from Nhouse",
+  name: "Invitation to N on the beach",
+  description: "An NFT from nhouse",
   image: "https://art.pixilart.com/82d984fcd46cafb.gif",
+  external_link: "https://n.house/key",
   propertyName: "N on the beach",
 })
 
