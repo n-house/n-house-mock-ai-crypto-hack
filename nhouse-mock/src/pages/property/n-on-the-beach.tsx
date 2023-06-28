@@ -367,7 +367,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
             {ready && !authenticated
               ? "ログインして予約する"
               : !availableTickets.length
-              ? "売り切れました。公式リリースをお待ちください。"
+              ? "公式リリースをお待ちください。"
               : "予約する"}
           </Button>
         </Center>
