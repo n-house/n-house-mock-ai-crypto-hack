@@ -88,12 +88,18 @@ const Key: NextPage = () => {
   return (
     <>
       <Swiper modules={[Pagination]} spaceBetween={50} slidesPerView={1} pagination={{ clickable: true }}>
-        {keys.map((key, index) => (
-          <SwiperSlide key={index}>
-            {/* @ts-ignore */}
-            <ReservedCard ticket={key.tokenUri} />
-          </SwiperSlide>
-        ))}
+        {keys.map((key, index) => {
+          return (
+            <SwiperSlide key={index}>
+              {/* @ts-ignore */}
+              {key.tokenUri.propertyName.includes("beach") ? (
+                <ReservedCard ticket={key.tokenUri} />
+              ) : (
+                <ReservedCard ticket={key.tokenUri} />
+              )}
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
     </>
   )
