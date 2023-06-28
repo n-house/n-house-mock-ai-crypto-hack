@@ -17,7 +17,7 @@ const NOnTheBeach: NextPage = () => {
       bgSize="cover"
       maxW="440px"
       borderRadius="16px"
-      bgImage="/images/Blue.png"
+      bgImage="/images/Beach.jpeg"
       justifyContent={"space-between"}
       position="relative"
     >
@@ -33,7 +33,7 @@ const NOnTheBeach: NextPage = () => {
         mr="20px"
         ml="auto"
       >
-        <Text>N’HOUSE</Text>
+        <Text>N on the</Text>
         <Text mt="-18px">beach</Text>
       </Box>
       {isLoading && (
