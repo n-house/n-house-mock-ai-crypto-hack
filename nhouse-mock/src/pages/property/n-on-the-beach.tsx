@@ -30,10 +30,10 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
     }
   }
   try {
-    // const res = await axios.get(`https://n.house/api/fetchBeach`)
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchMetadata`,
-    )
+    const res = await axios.get(`https://n.house/api/fetchBeach`)
+    // const res = await axios.get(
+    //   `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchMetadata`,
+    // )
     console.log(res.data)
     if (!res.data) {
       return {
@@ -89,7 +89,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
         `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/reserveBeach`,
         {
           // @ts-ignore
-          tokenId: availableTickets[0].tokenId,
+          tokenId: JSON.parse(availableTickets[0].tokenId),
           address: user?.wallet?.address,
         },
       )
