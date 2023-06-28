@@ -347,7 +347,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
             position="absolute"
             bottom="32px"
             isLoading={!ready || isLoading}
-            opacity={!ready || isLoading ? "0.8 !important" : 1}
+            opacity={!ready || isLoading || !availableTickets.length ? "0.8 !important" : 1}
             loadingText={!ready ? "認証情報読み込み中" : "リクエスト処理中"}
             spinnerPlacement="end"
             color="#00A7C1"
