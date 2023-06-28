@@ -33,7 +33,6 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
   const { ready, authenticated, login, signMessage } = usePrivy()
   const [showQr, setShowQr] = useState(false)
   const router = useRouter()
-  const property = properties[0]
 
   const handleSignRequest = async () => {
     if (!ready || !authenticated) {
@@ -83,7 +82,7 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
             </Text>
             <Text fontSize="18px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
               {/* @ts-ignore */}
-              {ticket && ticket.reservedDate.replaceAll("-", "/")}
+              未定
             </Text>
             <Text mt="24px" fontSize="14px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
               到着時間
@@ -156,22 +155,31 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
         bgSize="cover"
         maxW="440px"
         borderRadius="16px"
-        bgImage={property.image}
+        bgImage="/images/Beach.jpeg"
       >
         <Box
+          w="100%"
           fontFamily="Oswald"
           color="white"
-          fontSize="60px"
           fontWeight="700"
           lineHeight="1.5"
           fontStyle="normal"
-          textAlign="right"
           mt="20px"
-          mr="20px"
-          ml="auto"
         >
-          <Text>N’HOUSE</Text>
-          <Text mt="-18px">{property.title}</Text>
+          <Text lineHeight="1" mr="50%" textAlign="center" fontSize="100px">
+            N
+          </Text>
+          <Box mr="50%" textAlign="center">
+            <Text lineHeight="1" fontSize="40px">
+              on
+            </Text>
+            <Text lineHeight="1" fontSize="40px">
+              the
+            </Text>
+            <Text lineHeight="1" fontSize="40px">
+              beach
+            </Text>
+          </Box>
         </Box>
         <Box mt="-20px" color="white" mx="auto">
           <Avatar w="26.4vh" h="26.4vh" src={ticket.image} />
@@ -192,7 +200,7 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
           borderRadius="17.5px"
         >
           <Text textAlign="center" lineHeight="35px">
-            {ticket.reservedDate.replaceAll("-", "/")}
+            {/* {ticket.reservedDate.replaceAll("-", "/")} */}
           </Text>
         </Box>
         <Link href="https://chat.n.house">
