@@ -50,19 +50,45 @@ nhouseは、別荘をオンラインで販売するだけでなく、
 ・チェックインシステム開発
 
 
-
 【テックスタック】
+
+・Astar Network
 
 ・NEXTJS
 
-・Vercel
+・Chakra UI
+
+・Microsoft Azure
+
+・NodeJS
+
+・Typescript
 
 ・Hardhat
 
 ・Vercel AI
+
+・Vercel
 
 【アーキテクチャ】
 
 ![‎n'house アーキテクチャ phase2 ‎001](https://github.com/n-house/n-house-mock-ai-crypto-hack/assets/28668647/bbe30b6a-0306-4f17-aaf1-6247e8952852)
 
 
+【起動手順】
+
+・各ディレクトリ内で　`npm i` *ai-chatbotのみ `pnpm i`
+
+・各ディレクトリ内でenv.exampleをもとに環境変数を設定 *apiのみ local.settings.json
+
+・nhouse-mockディレクトリ内で `npm run dev`
+
+・ルートディレクトリで `npm run start-swa`
+
+【コントラクトデプロイ手順】
+
+・nhouse-contractディレクトリ内で `npm i --legacy-peer-deps`
+
+・次のコマンドでデプロイする。また、ログにコントラクトアドレスが表示されます。`npx haedhat run --network astar scripts/deploy.js` *NhouseNFTの場合
+
+・コピーしたコントラクトアドレスを`scripts/mint-nft.js`にセットし、`npx haedhat run --network astar scripts/mint-nft.js`でNFTをミントすることができる。
