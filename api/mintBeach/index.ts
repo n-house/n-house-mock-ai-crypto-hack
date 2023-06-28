@@ -1,17 +1,39 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import abi from "./abis/NOnTheBeachNFT.json"
+const API_URL = process.env.API_URL || "https://evm.astar.network"
+const PUBLIC_KEY = process.env.PUBLIC_KEY || "0x872449c44937f6Ac266cbBCDCb189B25AcEBb9E9"
+const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
+const CONTRACT_ADDRESS = process.env.MEMBERSHIP_ADDRESS || "0x7B4a600b78fC6534B4125145cd38e45d366ebD28"
+import { ethers } from "ethers"
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    context.log('HTTP trigger function processed a request.');
-    const name = (req.query.name || (req.body && req.body.name));
-    const responseMessage = name
-        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
+  const { address } = req.body
 
+  const tokenUri = JSON.stringify({
+    name: "Nhouse NFT",
+    description: "An NFT from Nhouse",
+    image: "https://art.pixilart.com/82d984fcd46cafb.gif",
+    propertyName: "N on the beach",
+  })
+  const provider = new ethers.providers.JsonRpcProvider(API_URL)
+  const signer = new ethers.Wallet(PRIVATE_KEY, provider)
+  const contract = new ethers.Contract(CONTRACT_ADDRESS, (abi as any).abi, signer)
+  const nonce = await provider.getTransactionCount(PUBLIC_KEY)
+  try {
+    const tx = await contract.mintNFT(address, tokenUri, { nonce: nonce })
+    context.log(tx)
+    await tx.wait()
     context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: responseMessage
-    };
+      status: 200,
+      body: tx,
+    }
+  } catch (error) {
+    context.log(error)
+    context.res = {
+      status: 500,
+      body: error,
+    }
+  }
+}
 
-};
-
-export default httpTrigger;
+export default httpTrigger
