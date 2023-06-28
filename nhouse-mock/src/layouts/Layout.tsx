@@ -3,6 +3,7 @@ import { Box, Container } from "@chakra-ui/react"
 import { ReactElement, memo, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import Header from "@/components/Header"
+import "@fontsource/oswald/700.css"
 
 type LayoutProps = Required<{
   readonly children: ReactElement

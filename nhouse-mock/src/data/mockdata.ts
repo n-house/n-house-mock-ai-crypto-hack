@@ -1,7 +1,7 @@
 export const properties = [
   {
     id: "1",
-    title: "on the beach",
+    title: "beach",
     address: "Address 1",
     city: "City 1",
     state: "State 1",
