@@ -1,6 +1,19 @@
 import { NextPage } from "next"
 import React, { useState } from "react"
-import { Box, Button, Center, Image, Text, VStack, useDisclosure } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  Center,
+  Image,
+  Text,
+  VStack,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  HStack,
+  Avatar,
+} from "@chakra-ui/react"
 import { usePrivy } from "@privy-io/react-auth"
 import { useRouter } from "next/router"
 
@@ -10,60 +23,117 @@ const NOnTheBeach: NextPage = () => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   return (
-    <VStack
-      mt="20px"
-      w="100%"
-      h="72.5vh"
-      bgSize="cover"
-      maxW="440px"
-      borderRadius="16px"
-      bgImage="/images/Beach.jpeg"
-      justifyContent={"space-between"}
-      position="relative"
-    >
-      <Box
-        w="100%"
-        fontFamily="Oswald"
-        color="white"
-        fontWeight="700"
-        lineHeight="1.5"
-        fontStyle="normal"
-        mt="20px"
-      >
-        <Text lineHeight="1" mr="50%" textAlign="center" fontSize="100px">
-          N
-        </Text>
-        <Box mr="50%" textAlign="center">
-          <Text lineHeight="1" fontSize="40px">
-            on
-          </Text>
-          <Text lineHeight="1" fontSize="40px">
-            the
-          </Text>
-          <Text lineHeight="1" fontSize="40px">
-            beach
-          </Text>
-        </Box>
-      </Box>
-      {isLoading && (
-        <>
-          <Box
-            fontFamily="Oswald"
-            color="white"
-            fontSize="40px"
-            fontWeight="700"
-            lineHeight="1.5"
-            fontStyle="normal"
-            mt="20px"
-            mx="auto"
-          >
-            <Image
-              src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw700"
-              w="200px"
-              h="200px"
-            />
+    <>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+
+        <ModalContent pos="absolute" bottom="0" mb="0" borderRadius="12px 12px 0 0" h="98vh">
+          <HStack position="relative" mt="20px" justifyContent="center" alignItems="center">
+            <Image position="absolute" left="0" ml="27px" w="10px" src="/icons/Back.png" onClick={onClose} />
+            <Text fontSize="16px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
+              予約内容の確認
+            </Text>
+          </HStack>
+          <HStack mt="20px" ml="24px" gap="16px">
+            {/* <Avatar w="60px" h="60px" src={properties[0].image} /> */}
+            <Box>
+              <Text fontSize="12px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
+                N’HOUSE
+              </Text>
+              <Text fontSize="16px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
+                {/* {properties[0].title} */}
+              </Text>
+            </Box>
+          </HStack>
+
+          <Box mt="40px" mx="24px">
+            <Text fontSize="14px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
+              宿泊日
+            </Text>
+            <Text fontSize="18px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5"></Text>
+            <Text mt="24px" fontSize="14px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
+              到着時間
+            </Text>
+            <Text fontSize="18px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
+              13:00
+            </Text>
           </Box>
-          {/* <Box
+          <Center w="100%">
+            <Button
+              position="absolute"
+              bottom="32px"
+              color="white"
+              fontFamily="Noto Sans"
+              mt="53px"
+              fontSize="16px"
+              fontWeight={700}
+              lineHeight="1.5"
+              bg="#00A7C1"
+              w="83.5%"
+              h="56px"
+              borderRadius="0px"
+              _hover={{ bg: "#00A7C1" }}
+              // onClick={handleReserveRequest}
+            >
+              上記規約に同意して予約する
+            </Button>
+          </Center>
+        </ModalContent>
+      </Modal>
+      <VStack
+        mt="20px"
+        w="100%"
+        h="72.5vh"
+        bgSize="cover"
+        maxW="440px"
+        borderRadius="16px"
+        bgImage="/images/Beach.jpeg"
+        justifyContent={"space-between"}
+        position="relative"
+      >
+        <Box
+          w="100%"
+          fontFamily="Oswald"
+          color="white"
+          fontWeight="700"
+          lineHeight="1.5"
+          fontStyle="normal"
+          mt="20px"
+        >
+          <Text lineHeight="1" mr="50%" textAlign="center" fontSize="100px">
+            N
+          </Text>
+          <Box mr="50%" textAlign="center">
+            <Text lineHeight="1" fontSize="40px">
+              on
+            </Text>
+            <Text lineHeight="1" fontSize="40px">
+              the
+            </Text>
+            <Text lineHeight="1" fontSize="40px">
+              beach
+            </Text>
+          </Box>
+        </Box>
+        {isLoading && (
+          <>
+            <Box
+              fontFamily="Oswald"
+              color="white"
+              fontSize="40px"
+              fontWeight="700"
+              lineHeight="1.5"
+              fontStyle="normal"
+              mt="20px"
+              mx="auto"
+            >
+              <Image
+                src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw700"
+                w="200px"
+                h="200px"
+              />
+            </Box>
+            {/* <Box
             position="absolute"
             bottom="92px"
             fontFamily="Oswald"
@@ -76,34 +146,35 @@ const NOnTheBeach: NextPage = () => {
           >
             <Text>{ticket && ticket.tokenUri.reservedDate.replaceAll("-", "/")}</Text>
           </Box> */}
-        </>
-      )}
-      <Center w="100%" pb="40px">
-        <Button
-          position="absolute"
-          bottom="32px"
-          isLoading={!ready || isLoading}
-          loadingText={!ready ? "認証情報読み込み中" : "リクエスト処理中"}
-          spinnerPlacement="end"
-          color="#00A7C1"
-          fontFamily="Noto Sans"
-          mt="20px"
-          fontSize="16px"
-          fontWeight={700}
-          lineHeight="1.5"
-          bg="white"
-          w="83.5%"
-          h="56px"
-          borderRadius="0px"
-          _hover={{ bg: "white" }}
-          onClick={() => {
-            ready && authenticated ? onOpen() : login()
-          }}
-        >
-          {ready && !authenticated ? "ログインして予約する" : "予約する"}
-        </Button>
-      </Center>
-    </VStack>
+          </>
+        )}
+        <Center w="100%" pb="40px">
+          <Button
+            position="absolute"
+            bottom="32px"
+            isLoading={!ready || isLoading}
+            loadingText={!ready ? "認証情報読み込み中" : "リクエスト処理中"}
+            spinnerPlacement="end"
+            color="#00A7C1"
+            fontFamily="Noto Sans"
+            mt="20px"
+            fontSize="16px"
+            fontWeight={700}
+            lineHeight="1.5"
+            bg="white"
+            w="83.5%"
+            h="56px"
+            borderRadius="0px"
+            _hover={{ bg: "white" }}
+            onClick={() => {
+              ready && authenticated ? onOpen() : login()
+            }}
+          >
+            {ready && !authenticated ? "ログインして予約する" : "予約する"}
+          </Button>
+        </Center>
+      </VStack>
+    </>
   )
 }
 
