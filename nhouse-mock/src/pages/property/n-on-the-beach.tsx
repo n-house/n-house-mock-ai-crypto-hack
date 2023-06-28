@@ -17,10 +17,11 @@ const NOnTheBeach: NextPage = () => {
       bgSize="cover"
       maxW="440px"
       borderRadius="16px"
-      bgImage="/images/Beach.png"
+      bgImage="/images/Blue.png"
       justifyContent={"space-between"}
+      position="relative"
     >
-      {/* <Box
+      <Box
         fontFamily="Oswald"
         color="white"
         fontSize="60px"
@@ -33,8 +34,8 @@ const NOnTheBeach: NextPage = () => {
         ml="auto"
       >
         <Text>N’HOUSE</Text>
-        <Text mt="-18px">{property.title}</Text>
-      </Box> */}
+        <Text mt="-18px">beach</Text>
+      </Box>
       {isLoading && (
         <>
           <Box
