@@ -13,15 +13,81 @@ import {
   ModalContent,
   HStack,
   Avatar,
+  useToast,
 } from "@chakra-ui/react"
 import { usePrivy } from "@privy-io/react-auth"
 import { useRouter } from "next/router"
+import axios from "axios"
 
 const NOnTheBeach: NextPage = () => {
-  const { ready, authenticated, login } = usePrivy()
+  const { ready, authenticated, user, login } = usePrivy()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
+  const toast = useToast()
+
+  const handleReserveRequest = async () => {
+    if (!user?.wallet?.address) return
+    setIsLoading(true)
+    onClose()
+    toast({
+      position: "top",
+      title: "予約リクエストを受け付けました",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    })
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/handleReserve`,
+        {
+          // @ts-ignore
+          tokenId: selectedTicket.tokenId,
+          address: user?.wallet?.address,
+        },
+      )
+
+      if (res.data) {
+        console.log(res.data)
+        setIsLoading(false)
+        toast({
+          position: "top",
+          title: "予約が正常に完了しました",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+        // @ts-ignore
+        router.push(`/key?selected=${selectedTicket.tokenId}`)
+        // await handleUpdateTickets()
+      } else {
+        console.log(res)
+        setIsLoading(false)
+        toast({
+          position: "top",
+          title: "予約が失敗しました",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        })
+        setTimeout(() => {
+          router.push("/house")
+        }, 3000)
+      }
+    } catch (error) {
+      setIsLoading(false)
+      toast({
+        position: "top",
+        title: "予約が失敗しました",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      })
+      setTimeout(() => {
+        router.push("/house")
+      }, 3000)
+    }
+  }
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -186,7 +252,7 @@ const NOnTheBeach: NextPage = () => {
               h="56px"
               borderRadius="0px"
               _hover={{ bg: "#00A7C1" }}
-              // onClick={handleReserveRequest}
+              onClick={handleReserveRequest}
             >
               上記規約に同意して予約する
             </Button>
@@ -228,44 +294,12 @@ const NOnTheBeach: NextPage = () => {
             </Text>
           </Box>
         </Box>
-        {isLoading && (
-          <>
-            <Box
-              fontFamily="Oswald"
-              color="white"
-              fontSize="40px"
-              fontWeight="700"
-              lineHeight="1.5"
-              fontStyle="normal"
-              mt="20px"
-              mx="auto"
-            >
-              <Image
-                src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw700"
-                w="200px"
-                h="200px"
-              />
-            </Box>
-            {/* <Box
-            position="absolute"
-            bottom="92px"
-            fontFamily="Oswald"
-            color="white"
-            fontSize="20px"
-            fontWeight="700"
-            lineHeight="1.5"
-            fontStyle="normal"
-            mx="auto"
-          >
-            <Text>{ticket && ticket.tokenUri.reservedDate.replaceAll("-", "/")}</Text>
-          </Box> */}
-          </>
-        )}
         <Center w="100%" pb="40px">
           <Button
             position="absolute"
             bottom="32px"
             isLoading={!ready || isLoading}
+            opacity={!ready || isLoading ? "0.8 !important" : 1}
             loadingText={!ready ? "認証情報読み込み中" : "リクエスト処理中"}
             spinnerPlacement="end"
             color="#00A7C1"
