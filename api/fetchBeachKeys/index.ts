@@ -1,8 +1,8 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import Web3 from "web3"
-import contract from "./abis/NhouseNFT.json"
+import contract from "./abis/NOnTheBeachNFT.json"
 const API_URL = process.env.API_URL || "https://evm.astar.network"
-const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS || "0xBE0505c227A3f786319f820510F9C09BB79EAb74"
+const CONTRACT_ADDRESS = process.env.NONTHEBEACH_ADDRESS || "0x5B0CFea8D2b67ECb8320D3FED6DAB87D63b174C5"
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   const address = req.body.address
