@@ -86,12 +86,14 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
       isClosable: true,
     })
     try {
+      const data = {
+        tokenId: JSON.parse(availableTickets[0].tokenId),
+        address: user?.wallet?.address,
+      }
+      console.log(data)
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/reserveBeach`,
-        {
-          tokenId: JSON.parse(availableTickets[0].tokenId),
-          address: user?.wallet?.address,
-        },
+        data,
       )
 
       if (res.data) {
