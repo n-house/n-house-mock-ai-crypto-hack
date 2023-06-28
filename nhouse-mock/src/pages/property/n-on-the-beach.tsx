@@ -22,19 +22,28 @@ const NOnTheBeach: NextPage = () => {
       position="relative"
     >
       <Box
+        w="100%"
         fontFamily="Oswald"
         color="white"
-        fontSize="60px"
         fontWeight="700"
         lineHeight="1.5"
         fontStyle="normal"
-        textAlign="right"
         mt="20px"
-        mr="20px"
-        ml="auto"
       >
-        <Text>N on the</Text>
-        <Text mt="-18px">beach</Text>
+        <Text lineHeight="1" mr="50%" textAlign="center" fontSize="100px">
+          N
+        </Text>
+        <Box mr="50%" textAlign="center">
+          <Text lineHeight="1" fontSize="40px">
+            on
+          </Text>
+          <Text lineHeight="1" fontSize="40px">
+            the
+          </Text>
+          <Text lineHeight="1" fontSize="40px">
+            beach
+          </Text>
+        </Box>
       </Box>
       {isLoading && (
         <>
