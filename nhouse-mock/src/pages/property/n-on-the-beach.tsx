@@ -364,7 +364,11 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
               ready && authenticated ? onOpen() : login()
             }}
           >
-            {ready && !authenticated ? "ログインして予約する" : "予約する"}
+            {ready && !authenticated
+              ? "ログインして予約する"
+              : !availableTickets.length
+              ? "売り切れました。公式リリースをお待ちください。"
+              : "予約する"}
           </Button>
         </Center>
       </VStack>
