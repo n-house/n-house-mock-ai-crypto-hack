@@ -72,6 +72,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
+  console.log(availableTickets)
 
   const handleReserveRequest = async () => {
     if (!user?.wallet?.address) return
