@@ -88,7 +88,6 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/reserveBeach`,
         {
-          // @ts-ignore
           tokenId: JSON.parse(availableTickets[0].tokenId),
           address: user?.wallet?.address,
         },
