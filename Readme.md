@@ -60,3 +60,9 @@ nhouseは、別荘をオンラインで販売するだけでなく、
 ・Hardhat
 
 ・Vercel AI
+
+【アーキテクチャ】
+
+![‎n'house アーキテクチャ phase2 ‎001](https://github.com/n-house/n-house-mock-ai-crypto-hack/assets/28668647/bbe30b6a-0306-4f17-aaf1-6247e8952852)
+
+
