@@ -12,6 +12,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   const signer = new ethers.Wallet(PRIVATE_KEY, provider)
   const contract = new ethers.Contract(CONTRACT_ADDRESS, (abi as any).abi, signer)
   const nonce = await provider.getTransactionCount(PUBLIC_KEY)
+  context.log(CONTRACT_ADDRESS, address, tokenId)
   try {
     const tx = await contract.transferFrom(PUBLIC_KEY, address, JSON.parse(tokenId), { nonce: nonce })
     context.log(tx)
