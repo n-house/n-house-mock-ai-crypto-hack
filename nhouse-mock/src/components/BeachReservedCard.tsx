@@ -186,7 +186,7 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
         </Box>
         <Box
           position="absolute"
-          bottom="100px"
+          bottom="90px"
           fontFamily="Oswald"
           color="#00A7C1"
           fontSize="20px"
@@ -200,13 +200,13 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
           borderRadius="17.5px"
         >
           <Text textAlign="center" lineHeight="35px">
-            {/* {ticket.reservedDate.replaceAll("-", "/")} */}
+            招待券
           </Text>
         </Box>
         <Link href="https://chat.n.house">
           <Avatar
             position="absolute"
-            bottom="95px"
+            bottom="90px"
             right="9%"
             h="45px"
             w="45px"
@@ -215,8 +215,10 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
         </Link>
         <Center w="100%" pb="40px">
           <Button
+            isDisabled={true}
+            opacity={"0.8 !important"}
             position="absolute"
-            bottom="32px"
+            bottom="30px"
             color="#00A7C1"
             fontFamily="Noto Sans"
             mt="20px"
@@ -228,11 +230,11 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
             h="56px"
             borderRadius="0px"
             _hover={{ bg: "white" }}
-            onClick={() => {
-              onOpen()
-            }}
+            // onClick={() => {
+            //   onOpen()
+            // }}
           >
-            鍵を開ける
+            続報をお待ちください
           </Button>
         </Center>
       </VStack>

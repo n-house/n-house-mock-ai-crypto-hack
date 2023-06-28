@@ -8,6 +8,7 @@ import axios from "axios"
 import { usePrivy } from "@privy-io/react-auth"
 import ReservedCard from "@/components/ReservedCard"
 import { Box, Button, Center, HStack, Spinner, Text, useDisclosure } from "@chakra-ui/react"
+import BeachReservedCard from "@/components/BeachReservedCard"
 
 const Key: NextPage = () => {
   const [keys, setKeys] = useState<any[]>([])
@@ -93,7 +94,7 @@ const Key: NextPage = () => {
             <SwiperSlide key={index}>
               {/* @ts-ignore */}
               {key.tokenUri.propertyName.includes("beach") ? (
-                <ReservedCard ticket={key.tokenUri} />
+                <BeachReservedCard ticket={key.tokenUri} />
               ) : (
                 <ReservedCard ticket={key.tokenUri} />
               )}
