@@ -62,7 +62,7 @@ const Key: NextPage = () => {
             キーがありません
           </Text>
         </HStack>
-        <Center w="100%" pb="98px">
+        <Center w="100%" maxW="440px" pb="98px">
           <Button
             position="absolute"
             bottom="100px"
