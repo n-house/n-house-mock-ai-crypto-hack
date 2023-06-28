@@ -20,6 +20,15 @@ import { useRouter } from "next/router"
 import axios from "axios"
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+  const pass = context.query.pass
+  if (pass !== process.env.PASS) {
+    return {
+      redirect: {
+        destination: `/home?error=invalid pass`,
+        permanent: false,
+      },
+    }
+  }
   try {
     // const res = await axios.get(`https://n.house/api/fetchBeach`)
     const res = await axios.get(
