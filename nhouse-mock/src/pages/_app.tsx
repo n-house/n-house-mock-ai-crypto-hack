@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
           showWalletLoginFirst: false,
         },
         // This configures wallet, email, Google, and Twitter login for your app.
-        loginMethods: ["wallet", "email", "google", "apple"],
+        loginMethods: ["email", "google", "apple"],
       }}
       onSuccess={() => {
         router.pathname === "/property/[propertyId]"
