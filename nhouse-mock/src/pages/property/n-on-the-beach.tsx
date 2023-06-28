@@ -100,7 +100,7 @@ const NOnTheBeach: NextPage = () => {
             ready && authenticated ? onOpen() : login()
           }}
         >
-          予約する
+          {ready && !authenticated ? "ログインして予約する" : "予約する"}
         </Button>
       </Center>
     </VStack>
