@@ -343,6 +343,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
         </Box>
         <Center w="100%" pb="40px">
           <Button
+            isDisabled={!availableTickets.length}
             position="absolute"
             bottom="32px"
             isLoading={!ready || isLoading}
