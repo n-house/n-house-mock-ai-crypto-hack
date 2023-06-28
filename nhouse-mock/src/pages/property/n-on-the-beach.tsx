@@ -118,7 +118,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
           isClosable: true,
         })
         setTimeout(() => {
-          router.push("/house")
+          window.location.reload()
         }, 3000)
       }
     } catch (error) {
@@ -131,7 +131,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
         isClosable: true,
       })
       setTimeout(() => {
-        router.push("/house")
+        window.location.reload()
       }, 3000)
     }
   }
