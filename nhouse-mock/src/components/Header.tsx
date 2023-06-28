@@ -32,7 +32,7 @@ const Header: React.FC = () => {
     <>
       <HStack
         position="fixed"
-        zIndex="200"
+        zIndex="80"
         top="0"
         w="100%"
         maxW="440px"
