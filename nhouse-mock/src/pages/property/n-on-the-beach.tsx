@@ -21,7 +21,7 @@ import axios from "axios"
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   const pass = context.query.pass
-  if (pass !== process.env.PASS) {
+  if (!pass || pass !== process.env.NEXT_PUBLIC_PASS) {
     return {
       redirect: {
         destination: `/home?error=invalid pass`,
