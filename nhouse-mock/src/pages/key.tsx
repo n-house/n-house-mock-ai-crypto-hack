@@ -10,7 +10,7 @@ import ReservedCard from "@/components/ReservedCard"
 import { Box, Button, Center, HStack, Spinner, Text, useDisclosure } from "@chakra-ui/react"
 
 const Key: NextPage = () => {
-  const [keys, setKeys] = useState([])
+  const [keys, setKeys] = useState<any[]>([])
   const [loading, setLoading] = useState<any>(false)
   const { ready, authenticated, user, login, logout } = usePrivy()
 
@@ -20,9 +20,15 @@ const Key: NextPage = () => {
       `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchKeys`,
       { address: user?.wallet?.address },
     )
-    if (!res.data) return
-    console.log(res.data)
-    setKeys(res.data.sort((a: any, b: any) => JSON.parse(b.tokenId) - JSON.parse(a.tokenId)))
+    const resp = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_PATH || "http://localhost:7071/api"}/fetchBeachKeys`,
+      { address: user?.wallet?.address },
+    )
+    if (!res.data.length && !resp.data.length) return
+    console.log(res.data, resp.data)
+    const sortedKeys = res.data.sort((a: any, b: any) => JSON.parse(b.tokenId) - JSON.parse(a.tokenId))
+    const sortedBeachKeys = resp.data.sort((a: any, b: any) => JSON.parse(b.tokenId) - JSON.parse(a.tokenId))
+    setKeys([...sortedBeachKeys, ...sortedKeys])
     setLoading("done")
   }
 
