@@ -187,7 +187,6 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
         <Box
           position="absolute"
           bottom="90px"
-          fontFamily="Oswald"
           color="#00A7C1"
           fontSize="20px"
           fontWeight="700"
@@ -198,6 +197,7 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
           bg="white"
           w="50%"
           borderRadius="17.5px"
+          fontFamily="Noto Sans JP"
         >
           <Text textAlign="center" lineHeight="35px">
             招待券
@@ -215,12 +215,12 @@ const BeachReservedCard: React.FC<Props> = ({ ticket }) => {
         </Link>
         <Center w="100%" pb="40px">
           <Button
+            fontFamily="Noto Sans JP"
             isDisabled={true}
             opacity={"0.8 !important"}
             position="absolute"
             bottom="30px"
             color="#00A7C1"
-            fontFamily="Noto Sans"
             mt="20px"
             fontSize="16px"
             fontWeight={700}
