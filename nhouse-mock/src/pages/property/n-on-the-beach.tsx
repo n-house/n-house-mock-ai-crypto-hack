@@ -143,11 +143,11 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
         <ModalContent pos="absolute" bottom="0" mb="0" borderRadius="12px 12px 0 0" h="98vh">
           <HStack position="relative" mt="20px" justifyContent="center" alignItems="center">
             <Image position="absolute" left="0" ml="27px" w="10px" src="/icons/Back.png" onClick={onClose} />
-            <Text fontSize="16px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
+            <Text fontSize="16px" fontWeight="700" fontFamily="Noto Sans JP" lineHeight="1.5">
               予約内容の確認
             </Text>
           </HStack>
-          <Text ml="24px" mt="20px" fontSize="16px" fontWeight="700" fontFamily="Noto Sans" lineHeight="1.5">
+          <Text ml="24px" mt="20px" fontSize="16px" fontWeight="700" fontFamily="Noto Sans JP" lineHeight="1.5">
             利用規約・個人情報保護方針
           </Text>
           <Box
@@ -157,7 +157,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
             mx="24px"
             fontSize="16px"
             fontWeight="700"
-            fontFamily="Noto Sans"
+            fontFamily="Noto Sans JP"
             lineHeight="1.5"
           >
             法令等の遵守について 1. 法令等の遵守について
@@ -242,7 +242,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
               position="absolute"
               bottom="32px"
               color="white"
-              fontFamily="Noto Sans"
+              fontFamily="Noto Sans JP"
               mt="53px"
               fontSize="16px"
               fontWeight={700}
@@ -304,7 +304,7 @@ const NOnTheBeach: NextPage<Props> = ({ availableTickets }) => {
             loadingText={!ready ? "認証情報読み込み中" : "リクエスト処理中"}
             spinnerPlacement="end"
             color="#00A7C1"
-            fontFamily="Noto Sans"
+            fontFamily="Noto Sans JP"
             mt="20px"
             fontSize="16px"
             fontWeight={700}
