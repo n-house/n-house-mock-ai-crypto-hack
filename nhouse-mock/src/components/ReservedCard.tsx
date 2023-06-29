@@ -179,7 +179,7 @@ const ReservedCard: React.FC<Props> = ({ ticket }) => {
         <Box
           position="absolute"
           bottom="100px"
-          fontFamily="Oswald"
+          fontFamily="Noto Sans JP"
           color="#00A7C1"
           fontSize="20px"
           fontWeight="700"
@@ -210,7 +210,7 @@ const ReservedCard: React.FC<Props> = ({ ticket }) => {
             position="absolute"
             bottom="32px"
             color="#00A7C1"
-            fontFamily="Noto Sans"
+            fontFamily="Noto Sans JP"
             mt="20px"
             fontSize="16px"
             fontWeight={700}
